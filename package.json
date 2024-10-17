@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.1",
+    "mysql2": "^3.11.3",
+    "node": "^20.18.0",
+    "nodemon": "^3.1.7",
+    "sequelize": "^6.37.4"
+  },
+  "name": "projeto-planilha",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./app.js localhost 3000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

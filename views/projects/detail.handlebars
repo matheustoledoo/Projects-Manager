@@ -1,0 +1,27 @@
+<div class="project-details">
+    <h2>{{project.name}}</h2>
+    <p><strong>Data Limite:</strong> {{project.deadline}}</p>
+
+    <h3>Informações do Cliente</h3>
+    <p><strong>Nome do Cliente:</strong> {{project.clientName}}</p>
+    <p><strong>Local do Serviço:</strong> {{project.location}}</p>
+
+    <h3>Responsável</h3>
+    <p><strong>Nome:</strong> {{project.responsible.name}}</p>
+    <p><strong>Telefone:</strong> {{project.responsible.phone}}</p>
+    <p><strong>Email:</strong> {{project.responsible.email}}</p>
+
+    <h3>Execução de Campo</h3>
+    <p><strong>Data:</strong> {{project.fieldExecutionDate}}</p>
+    <p><strong>Tempo:</strong> {{project.fieldExecutionTime}} horas</p>
+    <p><strong>Técnico Responsável:</strong> {{project.fieldTechnician}}</p>
+
+    <h3>Execução de Processamento</h3>
+    <p><strong>Data:</strong> {{project.processingExecutionDate}}</p>
+    <p><strong>Tempo:</strong> {{project.processingExecutionTime}} horas</p>
+    <p><strong>Técnico Responsável:</strong> {{project.processingTechnician}}</p>
+
+    <h3>Status e Observações</h3>
+    <p><strong>Status:</strong> {{project.status}}</p>
+    <p><strong>Observações:</strong> {{project.notes}}</p>
+</div>
