@@ -1,9 +1,20 @@
 const Project = require('../models/Project');
-const User = require('../models/User');
+const moment = require('moment');
 
+// Listar todos os projetos
 exports.getProjects = async (req, res) => {
     try {
-        const projects = await Project.findAll();
+        const projects = await Project.findAll({
+            order: [['createdAt', 'DESC']]
+        });
+
+        // Formatar as datas para dd/mm/yyyy
+        projects.forEach(project => {
+            project.formattedDeadline = moment(project.deadline).format('DD/MM/YYYY');
+            project.formattedFieldExecutionDate = moment(project.fieldExecutionDate).format('DD/MM/YYYY');
+            project.formattedProcessingExecutionDate = moment(project.processingExecutionDate).format('DD/MM/YYYY');
+        });
+
         res.render('projects/list', { projects });
     } catch (error) {
         console.error(error);
@@ -11,9 +22,11 @@ exports.getProjects = async (req, res) => {
     }
 };
 
+// Criar um novo projeto
 exports.createProject = async (req, res) => {
     try {
         await Project.create({
+            id: req.body.projectId, // Capturando o ID personalizado
             name: req.body.name,
             deadline: req.body.deadline,
             clientName: req.body.clientName,
@@ -39,7 +52,14 @@ exports.createProject = async (req, res) => {
     }
 };
 
+
+// Exibir os detalhes de um projeto
 exports.getProjectById = async (req, res) => {
-    const project = await Project.findByPk(req.params.id, { include: { model: User, as: 'creator' } });
-    res.render('projects/detail', { project });
+    try {
+        const project = await Project.findByPk(req.params.id);
+        res.render('projects/detail', { project });
+    } catch (error) {
+        console.error(error);
+        res.send('Erro ao carregar o projeto');
+    }
 };

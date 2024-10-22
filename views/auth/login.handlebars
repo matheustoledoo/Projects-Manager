@@ -1,8 +1,15 @@
-<div class="form-container">
+<div class="auth-container">
     <h2>Login</h2>
     <form action="/login" method="POST">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Senha" required>
-        <button type="submit">Entrar</button>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+        </div>
+        <button type="submit" class="auth-button">Entrar</button>
     </form>
+    <p class="auth-link">Ainda não tem uma conta? <a href="/register">Registrar</a></p>
 </div>

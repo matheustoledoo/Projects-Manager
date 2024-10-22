@@ -1,21 +1,50 @@
 <div class="project-list-container">
     <h2>Projetos</h2>
-    <div class="project-list">
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="search-input" class="styled-search-bar" placeholder="🔍 Buscar por ID, nome ou cliente..." onkeyup="filterProjects()">
+    </div>
+
+    <div class="project-list" id="project-list">
         {{#each projects}}
-        <div class="project-item">
-            <h3 class="project-title">{{this.name}}</h3>
-            <p><strong>Data Limite:</strong> {{this.deadline}}</p>
+        <div class="project-item" data-id="{{this.id}}" data-name="{{this.name}}" data-client="{{this.clientName}}">
+            <div class="project-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 class="project-title">{{this.name}}</h3>
+                <span class="project-id">ID: {{this.id}}</span>
+            </div>
+            
+            <!-- Lógica para a cor da data limite -->
+            {{#if (isToday this.deadline)}}
+                <p><strong>Data Limite:</strong> <span class="status-green">{{this.formattedDeadline}}</span></p>
+            {{else if (isPast this.deadline)}}
+                <p><strong>Data Limite:</strong> <span class="status-gray">{{this.formattedDeadline}}</span></p>
+            {{else}}
+                <p><strong>Data Limite:</strong> <span class="status-green">{{this.formattedDeadline}}</span></p>
+            {{/if}}
+            
             <p><strong>Status:</strong> <span class="status">{{this.status}}</span></p>
+            
             <button class="expand-button" onclick="toggleDetails({{this.id}})">Ver Mais</button>
             <div class="project-details" id="details-{{this.id}}" style="display: none;">
                 <p><strong>Cliente:</strong> {{this.clientName}}</p>
                 <p><strong>Local:</strong> {{this.location}}</p>
                 <p><strong>Responsável:</strong> {{this.responsible.name}} ({{this.responsible.phone}} | {{this.responsible.email}})</p>
-                <p><strong>Data de Execução de Campo:</strong> {{this.fieldExecutionDate}}</p>
                 <p><strong>Tempo de Execução de Campo:</strong> {{this.fieldExecutionTime}} horas</p>
+                <!-- Formatação para Data de Execução de Campo -->
+            {{#if this.formattedFieldExecutionDate}}
+                <p><strong>Data de Execução de Campo:</strong> <span >{{this.formattedFieldExecutionDate}}</span></p>
+            {{else}}
+                <p><strong>Data de Execução de Campo:</strong> Não definida</p>
+            {{/if}}
                 <p><strong>Técnico Responsável pelo Campo:</strong> {{this.fieldTechnician}}</p>
-                <p><strong>Data de Execução de Processamento:</strong> {{this.processingExecutionDate}}</p>
                 <p><strong>Tempo de Execução de Processamento:</strong> {{this.processingExecutionTime}} horas</p>
+                <!-- Formatação para Data de Execução de Processamento -->
+            {{#if this.formattedProcessingExecutionDate}}
+                <p><strong>Data de Execução de Processamento:</strong> <span >{{this.formattedProcessingExecutionDate}}</span></p>
+            {{else}}
+                <p><strong>Data de Execução de Processamento:</strong> Não definida</p>
+            {{/if}}
                 <p><strong>Técnico Responsável pelo Processamento:</strong> {{this.processingTechnician}}</p>
                 <p><strong>Observações:</strong> {{this.notes}}</p>
             </div>
@@ -30,5 +59,23 @@
     function toggleDetails(id) {
         const details = document.getElementById(`details-${id}`);
         details.style.display = details.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Função para filtrar projetos com base no texto da search bar
+    function filterProjects() {
+        const input = document.getElementById('search-input').value.toLowerCase();
+        const projectItems = document.querySelectorAll('.project-item');
+
+        projectItems.forEach(item => {
+            const id = item.getAttribute('data-id').toLowerCase();
+            const name = item.getAttribute('data-name').toLowerCase();
+            const client = item.getAttribute('data-client').toLowerCase();
+
+            if (id.includes(input) || name.includes(input) || client.includes(input)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
     }
 </script>

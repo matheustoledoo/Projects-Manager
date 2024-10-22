@@ -1,54 +1,65 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const User = require('./User');
 
 const Project = sequelize.define('Project', {
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        unique: true, // O ID deve ser único
+    },
     name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
     },
     deadline: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: false
     },
     clientName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
     },
     location: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
     },
     responsible: {
         type: DataTypes.JSON,
-        allowNull: false,
+        allowNull: false
     },
     fieldExecutionDate: {
         type: DataTypes.DATE,
+        allowNull: false
     },
     fieldExecutionTime: {
         type: DataTypes.FLOAT,
+        allowNull: false
     },
     fieldTechnician: {
         type: DataTypes.STRING,
+        allowNull: false
     },
     processingExecutionDate: {
         type: DataTypes.DATE,
+        allowNull: false
     },
     processingExecutionTime: {
         type: DataTypes.FLOAT,
+        allowNull: false
     },
     processingTechnician: {
         type: DataTypes.STRING,
+        allowNull: false
     },
     status: {
-        type: DataTypes.ENUM('a fazer', 'fazendo', 'feito'),
-        defaultValue: 'a fazer',
+        type: DataTypes.STRING,
+        allowNull: false
     },
     notes: {
         type: DataTypes.TEXT,
-    },
+        allowNull: true
+    }
 });
 
-Project.belongsTo(User, { as: 'creator' });
 module.exports = Project;

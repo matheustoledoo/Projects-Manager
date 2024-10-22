@@ -1,80 +1,81 @@
-<div class="form-container">
+<form action="/projects" method="POST" class="form-container">
     <h2>Criar Novo Projeto</h2>
-    <form action="/projects" method="POST">
-        
-        <!-- Informações Básicas do Projeto -->
-        <div class="form-group">
-            <label for="name">Nome do Serviço</label>
-            <input type="text" id="name" name="name" placeholder="Digite o nome do serviço" required>
-            
-            <label for="deadline">Data Limite</label>
-            <input type="date" id="deadline" name="deadline" required>
-        </div>
 
-        <!-- Informações do Cliente -->
-        <h3>Informações do Cliente</h3>
-        <div class="form-group">
-            <label for="clientName">Nome do Cliente</label>
-            <input type="text" id="clientName" name="clientName" placeholder="Nome do cliente" required>
-            
-            <label for="location">Local do Serviço</label>
-            <input type="text" id="location" name="location" placeholder="Local onde o serviço será realizado" required>
-        </div>
+    <div class="form-group">
+        <label for="projectId">Número do Projeto (ID):</label>
+        <input type="number" id="projectId" name="projectId" placeholder="Escolha um número único" required>
+    </div>
 
-        <!-- Responsável pelo Projeto -->
-        <h3>Responsável pelo Cliente</h3>
-        <div class="form-group">
-            <label for="responsibleName">Nome do Responsável</label>
-            <input type="text" id="responsibleName" name="responsible[name]" placeholder="Nome do responsável" required>
-            
-            <label for="responsiblePhone">Telefone</label>
-            <input type="tel" id="responsiblePhone" name="responsible[phone]" placeholder="Telefone do responsável" required>
-            
-            <label for="responsibleEmail">Email</label>
-            <input type="email" id="responsibleEmail" name="responsible[email]" placeholder="Email do responsável" required>
-        </div>
+    <div class="form-group">
+        <label for="name">Nome do Serviço:</label>
+        <input type="text" id="name" name="name" placeholder="Digite o nome do serviço" required>
+    </div>
 
-        <!-- Execução de Campo -->
-        <h3>Execução de Campo</h3>
-        <div class="form-group">
-            <label for="fieldExecutionDate">Data de Execução de Campo</label>
-            <input type="date" id="fieldExecutionDate" name="fieldExecutionDate">
-            
-            <label for="fieldExecutionTime">Tempo de Execução de Campo (em horas)</label>
-            <input type="number" id="fieldExecutionTime" name="fieldExecutionTime" placeholder="Ex.: 5.5" step="0.1">
-            
-            <label for="fieldTechnician">Técnico Responsável pelo Campo</label>
-            <input type="text" id="fieldTechnician" name="fieldTechnician" placeholder="Nome do técnico responsável">
-        </div>
+    <div class="form-group">
+        <label for="deadline">Data Limite:</label>
+        <input type="date" id="deadline" name="deadline" required>
+    </div>
 
-        <!-- Execução de Processamento -->
-        <h3>Execução de Processamento</h3>
-        <div class="form-group">
-            <label for="processingExecutionDate">Data de Execução de Processamento</label>
-            <input type="date" id="processingExecutionDate" name="processingExecutionDate">
-            
-            <label for="processingExecutionTime">Tempo de Execução de Processamento (em horas)</label>
-            <input type="number" id="processingExecutionTime" name="processingExecutionTime" placeholder="Ex.: 3.0" step="0.1">
-            
-            <label for="processingTechnician">Técnico Responsável pelo Processamento</label>
-            <input type="text" id="processingTechnician" name="processingTechnician" placeholder="Nome do técnico responsável">
-        </div>
+    <div class="form-group">
+        <label for="clientName">Nome do Cliente:</label>
+        <input type="text" id="clientName" name="clientName" placeholder="Digite o nome do cliente" required>
+    </div>
 
-        <!-- Status e Observações -->
-        <h3>Status e Observações</h3>
-        <div class="form-group">
-            <label for="status">Status do Projeto</label>
-            <select id="status" name="status" required>
-                <option value="a fazer">A fazer</option>
-                <option value="fazendo">Fazendo</option>
-                <option value="feito">Feito</option>
-            </select>
-            
-            <label for="notes">Observações</label>
-            <textarea id="notes" name="notes" placeholder="Escreva observações adicionais aqui"></textarea>
-        </div>
+    <div class="form-group">
+        <label for="location">Local do Serviço:</label>
+        <input type="text" id="location" name="location" placeholder="Digite o local do serviço" required>
+    </div>
 
-        <!-- Botão de Submissão -->
-        <button type="submit">Criar Projeto</button>
-    </form>
-</div>
+    <div class="form-group">
+        <label for="responsible.name">Responsável (Cliente):</label>
+        <input type="text" id="responsible.name" name="responsible[name]" placeholder="Nome do responsável" required>
+        <input type="text" id="responsible.phone" name="responsible[phone]" placeholder="Telefone do responsável" required>
+        <input type="email" id="responsible.email" name="responsible[email]" placeholder="Email do responsável" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fieldExecutionDate">Data de Execução de Campo:</label>
+        <input type="date" id="fieldExecutionDate" name="fieldExecutionDate" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fieldExecutionTime">Tempo de Execução de Campo (horas):</label>
+        <input type="number" id="fieldExecutionTime" name="fieldExecutionTime" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fieldTechnician">Técnico Responsável pelo Campo:</label>
+        <input type="text" id="fieldTechnician" name="fieldTechnician" placeholder="Nome do técnico" required>
+    </div>
+
+    <div class="form-group">
+        <label for="processingExecutionDate">Data de Execução de Processamento:</label>
+        <input type="date" id="processingExecutionDate" name="processingExecutionDate" required>
+    </div>
+
+    <div class="form-group">
+        <label for="processingExecutionTime">Tempo de Execução de Processamento (horas):</label>
+        <input type="number" id="processingExecutionTime" name="processingExecutionTime" required>
+    </div>
+
+    <div class="form-group">
+        <label for="processingTechnician">Técnico Responsável pelo Processamento:</label>
+        <input type="text" id="processingTechnician" name="processingTechnician" placeholder="Nome do técnico" required>
+    </div>
+
+    <div class="form-group">
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="a fazer">A fazer</option>
+            <option value="fazendo">Fazendo</option>
+            <option value="feito">Feito</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="notes">Observações:</label>
+        <textarea id="notes" name="notes" placeholder="Adicione alguma observação"></textarea>
+    </div>
+
+    <button type="submit">Criar Projeto</button>
+</form>
