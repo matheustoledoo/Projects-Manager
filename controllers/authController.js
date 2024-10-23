@@ -32,20 +32,22 @@ exports.login = async (req, res) => {
         }
 
         const match = await bcrypt.compare(password, user.password);
+
         if (!match) {
             return res.send('Senha incorreta');
         }
 
-        // Armazenar o ID do usuário na sessão
-        req.session.userId = user.id;
+        req.session.userId = user.id; // Adicione isso para salvar o ID do usuário na sessão
 
-        // Redirecionar para a página de projetos após login
-        res.redirect('/projects');
+        const token = jwt.sign({ userId: user.id }, 'seu_segredo_jwt');
+        res.cookie('token', token, { httpOnly: true });
+        res.redirect('/projects'); // Redirecionar para a página de projetos
     } catch (error) {
         console.error(error);
         res.send('Erro ao realizar o login');
     }
 };
+
 
 // Logout
 exports.logout = (req, res) => {

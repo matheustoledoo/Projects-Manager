@@ -1,0 +1,19 @@
+<h2>Meus Serviços</h2>
+
+<div class="service-list-container">
+    {{#if services.length}}
+        {{#each services}}
+            <div class="service-item">
+                <h3>{{this.name}}</h3>
+                <div class="actions">
+                    <a href="/services/edit/{{this.id}}">Editar</a>
+                    <form action="/services/delete/{{this.id}}" method="POST" style="display:inline;">
+                        <button type="submit">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <p class="no-services">Nenhum serviço encontrado.</p>
+    {{/if}}
+</div>

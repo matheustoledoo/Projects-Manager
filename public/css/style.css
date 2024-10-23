@@ -474,3 +474,69 @@ footer {
 
 
 
+/* Estilizando a lista de serviços */
+.service-list-container {
+    max-width: 900px; /* Aumentando a largura */
+    margin: 40px auto;
+    width: 1000px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.service-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s;
+}
+
+.service-item:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.service-item h3 {
+    color: #005f73;
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+.service-item .details {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Botões de Editar e Excluir */
+.service-item .actions {
+    display: flex; /* Exibe os botões lado a lado */
+    gap: 30px; /* Espaço entre os botões */
+}
+
+.service-item a,
+.service-item button {
+    background-color: #005f73;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center; /* Centraliza o texto */
+    text-decoration: none; /* Remove sublinhado */
+}
+
+.service-item a:hover,
+.service-item button:hover {
+    background-color: #004653; /* Cor ao passar o mouse */
+}
+
+.no-services {
+    text-align: center;
+    color: #888;
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 20px;
+}
+

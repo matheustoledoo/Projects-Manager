@@ -1,0 +1,76 @@
+<form action="/services/update/{{service.id}}" method="POST" class="form-container">
+    <h2>Editar Serviço</h2>
+
+    <div class="form-group">
+        <label for="name">Nome do Serviço:</label>
+        <input type="text" id="name" name="name" value="{{service.name}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="deadline">Data Limite:</label>
+        <input type="date" id="deadline" name="deadline" value="{{service.deadline}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="clientName">Nome do Cliente:</label>
+        <input type="text" id="clientName" name="clientName" value="{{service.clientName}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Local do Serviço:</label>
+        <input type="text" id="location" name="location" value="{{service.location}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="responsible.name">Responsável (Cliente):</label>
+        <input type="text" id="responsible.name" name="responsible[name]" value="{{service.responsible.name}}" required>
+        <input type="text" id="responsible.phone" name="responsible[phone]" value="{{service.responsible.phone}}" required>
+        <input type="email" id="responsible.email" name="responsible[email]" value="{{service.responsible.email}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fieldExecutionDate">Data de Execução de Campo:</label>
+        <input type="date" id="fieldExecutionDate" name="fieldExecutionDate" value="{{service.fieldExecutionDate}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fieldExecutionTime">Tempo de Execução de Campo (horas):</label>
+        <input type="number" id="fieldExecutionTime" name="fieldExecutionTime" value="{{service.fieldExecutionTime}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="fieldTechnician">Técnico Responsável pelo Campo:</label>
+        <input type="text" id="fieldTechnician" name="fieldTechnician" value="{{service.fieldTechnician}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="processingExecutionDate">Data de Execução de Processamento:</label>
+        <input type="date" id="processingExecutionDate" name="processingExecutionDate" value="{{service.processingExecutionDate}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="processingExecutionTime">Tempo de Execução de Processamento (horas):</label>
+        <input type="number" id="processingExecutionTime" name="processingExecutionTime" value="{{service.processingExecutionTime}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="processingTechnician">Técnico Responsável pelo Processamento:</label>
+        <input type="text" id="processingTechnician" name="processingTechnician" value="{{service.processingTechnician}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="a fazer" {{#if (eq service.status "a fazer")}}selected{{/if}}>A fazer</option>
+            <option value="fazendo" {{#if (eq service.status "fazendo")}}selected{{/if}}>Fazendo</option>
+            <option value="feito" {{#if (eq service.status "feito")}}selected{{/if}}>Feito</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="notes">Observações:</label>
+        <textarea id="notes" name="notes">{{service.notes}}</textarea>
+    </div>
+
+    <button type="submit">Salvar</button>
+</form>
