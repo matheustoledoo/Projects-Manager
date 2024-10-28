@@ -46,8 +46,10 @@
                 <p><strong>Data de Execução de Processamento:</strong> Não definida</p>
             {{/if}}
                 <p><strong>Técnico Responsável pelo Processamento:</strong> {{this.processingTechnician}}</p>
-                <p><strong>Observações:</strong> {{this.notes}}</p>
+                <p class="observations"><strong>Observações:</strong> {{this.notes}}</p>
+                
             </div>
+            <a href="/projects/edit/{{this.id}}" class="edit-button">Editar</a> <!-- Botão de editar -->
         </div>
         {{else}}
         <p class="no-projects">Nenhum projeto disponível. Clique em "+ Novo Projeto" para criar.</p>

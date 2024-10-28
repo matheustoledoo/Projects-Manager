@@ -70,6 +70,9 @@ app.get('/login', (req, res) => res.render('auth/login'));
 app.post('/login', authController.login);
 app.get('/logout', authController.logout);
 
+// Rota para editar projeto
+app.get('/projects/edit/:id', projectController.getEditService);
+
 // Rotas para serviços
 app.get('/services', projectController.getUserServices);
 app.get('/services/edit/:id', projectController.getEditService);

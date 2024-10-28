@@ -42,12 +42,19 @@ exports.getEditService = async (req, res) => {
         if (!service) {
             return res.status(404).send('Serviço não encontrado.');
         }
+
+        // Formatar as datas para o formato correto (YYYY-MM-DD)
+        service.deadline = moment(service.deadline).format('YYYY-MM-DD');
+        service.fieldExecutionDate = moment(service.fieldExecutionDate).format('YYYY-MM-DD');
+        service.processingExecutionDate = moment(service.processingExecutionDate).format('YYYY-MM-DD');
+
         res.render('services/edit', { service });
     } catch (error) {
         console.error(error);
         res.send('Erro ao carregar o serviço para edição');
     }
 };
+
 
 // Função para atualizar um serviço
 exports.updateService = async (req, res) => {
@@ -138,5 +145,41 @@ exports.getProjectById = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.send('Erro ao carregar o projeto');
+    }
+};
+
+
+// Função para atualizar um projeto
+exports.updateProject = async (req, res) => {
+    try {
+        const project = await Project.findByPk(req.params.id);
+        if (!project) {
+            return res.status(404).send('Projeto não encontrado.');
+        }
+
+        // Atualiza os detalhes do projeto
+        await project.update({
+            name: req.body.name,
+            deadline: req.body.deadline,
+            clientName: req.body.clientName,
+            location: req.body.location,
+            responsible: {
+                name: req.body.responsible.name,
+                phone: req.body.responsible.phone,
+                email: req.body.responsible.email,
+            },
+            fieldExecutionDate: req.body.fieldExecutionDate,
+            fieldExecutionTime: req.body.fieldExecutionTime,
+            fieldTechnician: req.body.fieldTechnician,
+            processingExecutionDate: req.body.processingExecutionDate,
+            processingExecutionTime: req.body.processingExecutionTime,
+            processingTechnician: req.body.processingTechnician,
+            status: req.body.status,
+            notes: req.body.notes,
+        });
+        res.redirect('/projects');
+    } catch (error) {
+        console.error(error);
+        res.send('Erro ao atualizar o projeto');
     }
 };

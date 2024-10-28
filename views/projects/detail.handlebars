@@ -23,5 +23,7 @@
 
     <h3>Status e Observações</h3>
     <p><strong>Status:</strong> {{project.status}}</p>
-    <p><strong>Observações:</strong> {{project.notes}}</p>
+    <p class="observations" ><strong>Observações:</strong> {{project.notes}}</p>
+
+     <a href="/projects/edit/{{this.id}}" class="edit-button">Editar</a> <!-- Botão de editar -->
 </div>

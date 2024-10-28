@@ -540,3 +540,40 @@ footer {
     margin-top: 20px;
 }
 
+
+.project-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.edit-button {
+    background-color: #005f73;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none; /* Remove sublinhado */
+}
+
+.edit-button:hover {
+    background-color: #004653; /* Cor ao passar o mouse */
+}
+
+.project-details {
+    margin-top: 10px;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    display: none; /* Oculta por padrão */
+}
+
+.observations {
+    word-wrap: break-word; /* Permite quebra de linha */
+    overflow-wrap: break-word; /* Suporte adicional para quebra de linha */
+    max-width: 100%; /* Certifique-se de que não ultrapasse o contêiner */
+    margin-top: 10px; /* Adiciona um pouco de espaço acima, se necessário */
+}
