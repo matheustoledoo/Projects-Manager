@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 // Registrar novo usuário
@@ -7,11 +6,10 @@ exports.register = async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
-        const hashedPassword = await bcrypt.hash(password, 10);
         await User.create({
             username,
             email,
-            password: hashedPassword
+            password // Armazenar a senha sem hash (não recomendado para produção, apenas para testes)
         });
         res.redirect('/login');
     } catch (error) {
@@ -31,23 +29,21 @@ exports.login = async (req, res) => {
             return res.send('Usuário não encontrado');
         }
 
-        const match = await bcrypt.compare(password, user.password);
-
-        if (!match) {
+        // Verificação simples da senha (não recomendado para produção)
+        if (user.password !== password) {
             return res.send('Senha incorreta');
         }
 
-        req.session.userId = user.id; // Adicione isso para salvar o ID do usuário na sessão
+        req.session.userId = user.id; // Salva o ID do usuário na sessão
 
         const token = jwt.sign({ userId: user.id }, 'seu_segredo_jwt');
         res.cookie('token', token, { httpOnly: true });
-        res.redirect('/projects'); // Redirecionar para a página de projetos
+        res.redirect('/projects'); // Redireciona para a página de projetos
     } catch (error) {
         console.error(error);
         res.send('Erro ao realizar o login');
     }
 };
-
 
 // Logout
 exports.logout = (req, res) => {
