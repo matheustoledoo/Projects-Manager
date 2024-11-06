@@ -35,6 +35,7 @@ exports.getUserServices = async (req, res) => {
     }
 };
 
+
 // Função para exibir o serviço para edição
 exports.getEditService = async (req, res) => {
     try {
@@ -43,17 +44,24 @@ exports.getEditService = async (req, res) => {
             return res.status(404).send('Serviço não encontrado.');
         }
 
-        // Formatar as datas para o formato correto (YYYY-MM-DD)
-        service.deadline = moment(service.deadline).format('YYYY-MM-DD');
-        service.fieldExecutionDate = moment(service.fieldExecutionDate).format('YYYY-MM-DD');
-        service.processingExecutionDate = moment(service.processingExecutionDate).format('YYYY-MM-DD');
+        // Formatar as datas para o formato 'YYYY-MM-DD'
+        const formattedDeadline = moment(service.deadline).format('YYYY-MM-DD');
+        const formattedFieldExecutionDate = moment(service.fieldExecutionDate).format('YYYY-MM-DD');
+        const formattedProcessingExecutionDate = moment(service.processingExecutionDate).format('YYYY-MM-DD');
 
-        res.render('services/edit', { service });
+        res.render('services/edit', { 
+            service,
+            formattedDeadline,
+            formattedFieldExecutionDate,
+            formattedProcessingExecutionDate
+        });
     } catch (error) {
         console.error(error);
         res.send('Erro ao carregar o serviço para edição');
     }
 };
+
+
 
 
 // Função para atualizar um serviço
